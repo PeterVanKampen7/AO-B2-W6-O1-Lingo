@@ -59,7 +59,7 @@ button.onclick = checkWord;
 controls.appendChild(button);
 container.appendChild(controls);
 
-var rand = Math.floor(Math.random() * 479);
+var rand = Math.floor(Math.random() * 478);
 var winWord = words[rand].toUpperCase().split('');
 for (let i = 0; i < 5; i++) {
     document.getElementById("LETTER"+i+"0").innerHTML = winWord[0];
@@ -68,11 +68,25 @@ console.log(winWord);
 
 function checkWord(){
     var word = document.getElementById("guess").value.toUpperCase().split('');
+    var wincheck = 0;
     if(word.length == 5){
         for (let i = 0; i < 5; i++) {
             var letterField = document.getElementById("LETTER"+lineCounter+i);
             letterField.innerHTML = word[i];
-            
+            if(word[i] == winWord[i]){
+                letterField.style.backgroundColor = "green";
+                winWord[i] = "";
+                wincheck++;
+            }
+        }
+        for (let i = 0; i < 5; i++) {
+            var letterField = document.getElementById("LETTER"+lineCounter+i);
+            for (let j = 0; j < 5; j++) {
+                if(word[i] == winWord[j]){
+                    letterField.style.backgroundColor = "yellow";
+                    winWord[j] = "";
+                }
+            }           
         }
         lineCounter++;
         if(lineCounter == 5){
@@ -80,9 +94,24 @@ function checkWord(){
                 alert("GAME OVER. \nHET WOORD WAS: "+words[rand]);
             }, 0);         
         }
+        else if(wincheck == 5){
+            setTimeout(function(){
+                alert("U heeft het woord juist geraden.");
+            }, 0);
+        }
     }
     else{
-        alert("Uw woord heeft geen geldig aantal letters.");
+        for (let i = 0; i < 5; i++) {
+            var letterField = document.getElementById("LETTER"+lineCounter+i);
+            if(word[i] != undefined){
+                letterField.innerHTML = word[i];
+            }
+        }
+        lineCounter++;
+        setTimeout(function(){
+            alert("Uw woord heeft geen geldig aantal letters.");
+        }, 0);       
     }
     console.log(word);
+    winWord = words[rand].toUpperCase().split('');
 }
