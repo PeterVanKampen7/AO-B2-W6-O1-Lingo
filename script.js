@@ -68,6 +68,7 @@ console.log(winWord);
 
 function checkWord(){
     var word = document.getElementById("guess").value.toUpperCase().split('');
+    console.log(word);
     var wincheck = 0;
     if(word.length == 5){
         for (let i = 0; i < 5; i++) {
@@ -88,18 +89,20 @@ function checkWord(){
                     letterField.style.borderRadius = "20px";
                     winWord[j] = "";
                 }
-            }           
+            }          
         }
         lineCounter++;
         if(lineCounter == 5){
             setTimeout(function(){
                 alert("GAME OVER. \nHET WOORD WAS: "+words[rand].toUpperCase());
-            }, 0);         
+            }, 0);   
+            location.reload();      
         }
         else if(wincheck == 5){
             setTimeout(function(){
                 alert("U heeft het woord juist geraden.");
             }, 0);
+            location.reload();
         }
     }
     else{
@@ -114,6 +117,5 @@ function checkWord(){
             alert("Uw woord heeft geen geldig aantal letters.");
         }, 0);       
     }
-    console.log(word);
     winWord = words[rand].toUpperCase().split('');
 }
