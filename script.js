@@ -83,7 +83,7 @@ function checkWord(){
         for (let i = 0; i < 5; i++) {
             var letterField = document.getElementById("LETTER"+lineCounter+i);
             for (let j = 0; j < 5; j++) {
-                if(word[i] == winWord[j]){
+                if(word[i] == winWord[j] && letterField.style.backgroundColor != "green"){
                     letterField.style.backgroundColor = "#f2c200";
                     letterField.style.borderRadius = "20px";
                     winWord[j] = "";
