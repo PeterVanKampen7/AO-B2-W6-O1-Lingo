@@ -91,18 +91,18 @@ function checkWord(){
                 }
             }          
         }
-        lineCounter++;
-        if(lineCounter == 5){
-            setTimeout(function(){
-                alert("GAME OVER. \nHET WOORD WAS: "+words[rand].toUpperCase());
-            }, 0);   
-            location.reload();      
-        }
-        else if(wincheck == 5){
+        lineCounter++;     
+        if(wincheck == 5){
             setTimeout(function(){
                 alert("U heeft het woord juist geraden.");
             }, 0);
             location.reload();
+        }
+        else if(lineCounter == 5){
+            setTimeout(function(){
+                alert("GAME OVER. \nHET WOORD WAS: "+words[rand].toUpperCase());
+            }, 0);   
+            location.reload();      
         }
     }
     else{
@@ -115,7 +115,13 @@ function checkWord(){
         lineCounter++;
         setTimeout(function(){
             alert("Uw woord heeft geen geldig aantal letters.");
-        }, 0);       
+        }, 0); 
+        if(lineCounter == 5){
+            setTimeout(function(){
+                alert("GAME OVER. \nHET WOORD WAS: "+words[rand].toUpperCase());
+            }, 0);   
+            location.reload();      
+        }      
     }
     winWord = words[rand].toUpperCase().split('');
 }
