@@ -73,6 +73,7 @@ function checkWord(){
         for (let i = 0; i < 5; i++) {
             var letterField = document.getElementById("LETTER"+lineCounter+i);
             letterField.innerHTML = word[i];
+            letterField.style.borderRadius = "0px";
             if(word[i] == winWord[i]){
                 letterField.style.backgroundColor = "green";
                 winWord[i] = "";
@@ -83,7 +84,8 @@ function checkWord(){
             var letterField = document.getElementById("LETTER"+lineCounter+i);
             for (let j = 0; j < 5; j++) {
                 if(word[i] == winWord[j]){
-                    letterField.style.backgroundColor = "yellow";
+                    letterField.style.backgroundColor = "#f2c200";
+                    letterField.style.borderRadius = "20px";
                     winWord[j] = "";
                 }
             }           
@@ -91,7 +93,7 @@ function checkWord(){
         lineCounter++;
         if(lineCounter == 5){
             setTimeout(function(){
-                alert("GAME OVER. \nHET WOORD WAS: "+words[rand]);
+                alert("GAME OVER. \nHET WOORD WAS: "+words[rand].toUpperCase());
             }, 0);         
         }
         else if(wincheck == 5){
